@@ -126,9 +126,7 @@
       display: none !important;
     }
 
-    .search-wrap {
-      position: relative;
-    }
+  /* Barra de búsqueda eliminada */
 
     .search-results-info {
       margin-bottom: 1.5rem;
@@ -179,25 +177,13 @@
           <h1 class="display-6 fw-bold mb-2">📚 División de Universidad Abierta, Continua y a Distancia</h1>
           <p class="lead mb-0">Contactos de la DUACyD y sus áreas.</p>
         </div>
-        <div class="col-lg-4 search-wrap">
-          <div class="input-group">
-            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
-            <input id="filter" type="search" class="form-control form-control-lg border-start-0" placeholder="Buscar contacto..." aria-label="Buscar contacto" />
-            <button id="clearSearch" class="btn btn-outline-secondary d-none" type="button" aria-label="Limpiar búsqueda">
-              <i class="bi bi-x-lg"></i>
-            </button>
-          </div>
-        </div>
+        
       </div>
     </div>
   </section>
 
   <!-- Grid de contactos -->
   <main class="container my-5">
-    <div id="searchResultsInfo" class="search-results-info" role="status" aria-live="polite">
-      Mostrando <span id="resultsCount">0</span> resultados de búsqueda
-    </div>
-
     <div class="row g-4" id="cardsGrid">
 
       <!-- División Principal -->
@@ -266,12 +252,6 @@
 
     </div>
 
-    <!-- Mensaje cuando no hay resultados -->
-    <div id="noResults" class="text-center py-5 d-none">
-      <i class="bi bi-search display-4 text-muted mb-3"></i>
-      <h3 class="h4 text-muted">No se encontraron resultados</h3>
-      <p class="text-muted">Intenta con otros términos de búsqueda</p>
-    </div>
   </main>
 
   <!-- Footer -->
@@ -286,67 +266,7 @@
     </div>
   </footer>
 
-  <script>
-    const input = document.getElementById('filter');
-    const cards = Array.from(document.querySelectorAll('.directory-card'));
-    const clearSearchBtn = document.getElementById('clearSearch');
-    const searchResultsInfo = document.getElementById('searchResultsInfo');
-    const resultsCount = document.getElementById('resultsCount');
-    const noResults = document.getElementById('noResults');
-
-    function filterCards() {
-      const q = input.value.trim().toLowerCase();
-      let visibleCount = 0;
-
-      cards.forEach(card => {
-        const keys = (card.getAttribute('data-keywords') || '').toLowerCase();
-        const title = card.innerText.toLowerCase();
-        const match = !q || keys.includes(q) || title.includes(q);
-
-        if (match) {
-          card.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-
-      if (q.length > 0) {
-        searchResultsInfo.style.display = 'block';
-        resultsCount.textContent = visibleCount;
-
-        if (visibleCount === 0) {
-          noResults.classList.remove('d-none');
-        } else {
-          noResults.classList.add('d-none');
-        }
-      } else {
-        searchResultsInfo.style.display = 'none';
-        noResults.classList.add('d-none');
-      }
-
-      if (q.length > 0) {
-        clearSearchBtn.classList.remove('d-none');
-      } else {
-        clearSearchBtn.classList.add('d-none');
-      }
-    }
-
-    input.addEventListener('input', filterCards);
-
-    clearSearchBtn.addEventListener('click', () => {
-      input.value = '';
-      input.focus();
-      filterCards();
-    });
-
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        input.value = '';
-        filterCards();
-      }
-    });
-  </script>
+  <!-- Script de búsqueda eliminado -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
